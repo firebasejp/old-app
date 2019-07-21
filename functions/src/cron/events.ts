@@ -7,8 +7,12 @@ import { ConnpassEvent, Event } from '../model/event'
 const firestore = admin.firestore()
 const firestoreSimple = new FirestoreSimple(firestore)
 
+export const getConnpassEvents = functions
+  .region('asia-northeast1')
+  .pubsub.schedule('0 9-23 * * *')
+  .timeZone('Asia/Tokyo')
+  .onRun(async (context) => {
 
-export const getConnpassEvents = functions.https.onRequest(async (request, response) => {
   const eventsCollection = firestoreSimple.collection<Event>({ path: 'events' })
   await eventsCollection.fetchAll()
 
