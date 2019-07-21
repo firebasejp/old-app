@@ -14,7 +14,6 @@ export const getConnpassEvents = functions
   .onRun(async (context) => {
 
   const eventsCollection = firestoreSimple.collection<Event>({ path: 'events' })
-  await eventsCollection.fetchAll()
 
   const client = new ConnpassClient()
   const apiResponse = await client.fetch()
