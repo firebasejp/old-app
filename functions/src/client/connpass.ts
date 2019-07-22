@@ -7,21 +7,21 @@ export type connpassResponseEvent = {
   catch: string,
   description: string,
   event_url: string,
-  started_at: Date,
-  ended_at: Date,
+  started_at: string,
+  ended_at: string,
   url: string,
   hash_tag: string,
   limit: number,
   address: string,
   place: string,
-  lat: number,
-  lon: number,
+  lat: string, // ドキュメントは浮動小数点だが実際はstring
+  lon: string, // ドキュメントは浮動小数点だが実際はstring
   owner_id: number,
   owner_nickname: string,
   owner_twitter_id: string,
   accepted: number,
   waiting: number,
-  updated_at: Date,
+  updated_at: string,
 }
 
 const groupSeriesId = {
