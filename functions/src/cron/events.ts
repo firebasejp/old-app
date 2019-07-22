@@ -15,7 +15,7 @@ export const getConnpassEvents = functions
 
   const eventsCollection = firestoreSimple.collection<Event>({ path: 'events' })
 
-  const client = new ConnpassClient()
+  const client = new ConnpassClient('tokyo')
   const apiResponse = await client.fetch()
   const events = apiResponse.map((responseEvent) => new ConnpassEvent(responseEvent))
 

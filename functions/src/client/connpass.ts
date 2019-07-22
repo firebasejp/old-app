@@ -24,11 +24,22 @@ export type connpassResponseEvent = {
   updated_at: Date,
 }
 
+const groupSeriesId = {
+  tokyo: 4070,
+  osaka: 6629,
+}
+
 export class ConnpassClient {
+  seriesId: number
+
+  constructor (group: 'tokyo' | 'osaka') {
+    this.seriesId = groupSeriesId[group]
+  }
+
   async fetch(): Promise<connpassResponseEvent[]>  {
     const response = await axios.get('https://connpass.com/api/v1/event/', {
       params: {
-        series_id: 4070
+        series_id: this.seriesId
       }
     })
     return response.data.events as connpassResponseEvent[]
