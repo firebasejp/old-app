@@ -7,8 +7,8 @@ export interface Event {
   description: string, // 概要
   eventUrl: string, // イベントurl
   hashtag?: string, // ハッシュタグ
-  started: Date, // 開始時間
-  ended: Date, // 終了時間
+  startedAt: Date, // 開始時間
+  endedAt: Date, // 終了時間
   address: string, // 開催場所住所
   place: string, // 開催会場
   lat: string, // 緯度 浮動小数点の丸め誤差防止のためにstring
@@ -17,7 +17,7 @@ export interface Event {
   limit: number, // 定員
   accepted: number, // 参加者
   waiting: number, // 補欠者
-  updated: Date, // 更新日時
+  updatedAt: Date, // 更新日時
 }
 
 export class ConnpassEvent implements Event {
@@ -27,8 +27,8 @@ export class ConnpassEvent implements Event {
   description: string
   eventUrl: string
   hashtag?: string
-  started: Date
-  ended: Date
+  startedAt: Date
+  endedAt: Date
   address: string
   place: string
   lat: string
@@ -37,7 +37,7 @@ export class ConnpassEvent implements Event {
   limit: number
   accepted: number
   waiting: number
-  updated: Date
+  updatedAt: Date
 
   constructor(res: connpassResponseEvent) {
     this.id = `connpass_${res.event_id}`
@@ -47,8 +47,8 @@ export class ConnpassEvent implements Event {
     this.description = res.description
     this.eventUrl = res.event_url
     this.hashtag = res.hash_tag || undefined
-    this.started = new Date(res.started_at)
-    this.ended = new Date(res.ended_at)
+    this.startedAt = new Date(res.started_at)
+    this.endedAt = new Date(res.ended_at)
     this.address = res.address
     this.place = res.place
     this.lat = res.lat
@@ -57,6 +57,6 @@ export class ConnpassEvent implements Event {
     this.limit = res.limit
     this.accepted = res.accepted
     this.waiting = res.waiting
-    this.updated = new Date(res.updated_at)
+    this.updatedAt = new Date(res.updated_at)
   }
 }
