@@ -1,4 +1,7 @@
 import { connpassResponseEvent } from "../client/connpass";
+// @google-cloud/firestoreはfirebase-adminの依存としてインストールされている
+// tslint:disable:no-implicit-dependencies
+import { GeoPoint } from "@google-cloud/firestore"
 
 export interface Event {
   id: string // firestore用の全サービス横断でユニークなid生成
@@ -11,8 +14,7 @@ export interface Event {
   endedAt: Date, // 終了時間
   address: string, // 開催場所住所
   place: string, // 開催会場
-  lat: string, // 緯度 浮動小数点の丸め誤差防止のためにstring
-  lon: string, // 軽度 浮動小数点の丸め誤差防止のためにstring
+  geoPoint: GeoPoint // 緯度経度
   owner: string, // 主催者
   limit: number, // 定員
   accepted: number, // 参加者
@@ -31,8 +33,7 @@ export class ConnpassEvent implements Event {
   endedAt: Date
   address: string
   place: string
-  lat: string
-  lon: string
+  geoPoint: GeoPoint
   owner: string
   limit: number
   accepted: number
@@ -51,8 +52,7 @@ export class ConnpassEvent implements Event {
     this.endedAt = new Date(res.ended_at)
     this.address = res.address
     this.place = res.place
-    this.lat = res.lat
-    this.lon = res.lon
+    this.geoPoint = new GeoPoint(Number(res.lat), Number(res.lon))
     this.owner = res.owner_nickname
     this.limit = res.limit
     this.accepted = res.accepted
