@@ -56,12 +56,21 @@ Widget _navigationView(BuildContext context, {MainView force}) {
   );
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _AppState();
+  }
+
+}
+
+class _AppState extends State<App> {
+  var _bottomNavigation = new BottomNavigation();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<BottomNavigation>.value(value: new BottomNavigation()),
+        Provider<BottomNavigation>.value(value: _bottomNavigation),
       ],
       child: MaterialApp(
         title: 'FJUG',
