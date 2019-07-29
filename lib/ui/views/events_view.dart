@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/core/model/event.dart';
-// import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 // DEMO event lisr
 var eventList = List<Event>.generate(10, (i) {
@@ -15,12 +14,7 @@ var eventList = List<Event>.generate(10, (i) {
 });
 
 _launchURL(String url) async {
-  // await FlutterWebBrowser.openWebPage(url: url, androidToolbarColor: Colors.orange);
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
+  await FlutterWebBrowser.openWebPage(url: url, androidToolbarColor: Colors.orange);
 }
 
 class EventsView extends StatelessWidget {
