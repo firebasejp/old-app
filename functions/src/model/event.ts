@@ -1,6 +1,5 @@
 import { connpassResponseEvent } from "../client/connpass";
 // @google-cloud/firestoreはfirebase-adminの依存としてインストールされている
-// tslint:disable:no-implicit-dependencies
 import { GeoPoint } from "@google-cloud/firestore"
 
 export interface Event {
