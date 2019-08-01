@@ -1,24 +1,24 @@
-import { connpassResponseEvent } from "../client/connpass";
+import { connpassResponseEvent } from '../client/connpass'
 // @google-cloud/firestoreはfirebase-adminの依存としてインストールされている
-import { GeoPoint } from "@google-cloud/firestore"
+import { GeoPoint } from '@google-cloud/firestore'
 
 export interface Event {
     id: string // firestore用の全サービス横断でユニークなid生成
-    service: string, // イベント募集サービス名
-    title: string, // イベント名
-    description: string, // 概要
-    eventUrl: string, // イベントurl
-    hashtag?: string, // ハッシュタグ
-    startedAt: Date, // 開始時間
-    endedAt: Date, // 終了時間
-    address: string, // 開催場所住所
-    place: string, // 開催会場
+    service: string // イベント募集サービス名
+    title: string // イベント名
+    description: string // 概要
+    eventUrl: string // イベントurl
+    hashtag?: string // ハッシュタグ
+    startedAt: Date // 開始時間
+    endedAt: Date // 終了時間
+    address: string // 開催場所住所
+    place: string // 開催会場
     geoPoint: GeoPoint // 緯度経度
-    owner: string, // 主催者
-    limit: number, // 定員
-    accepted: number, // 参加者
-    waiting: number, // 補欠者
-    updatedAt: Date, // 更新日時
+    owner: string // 主催者
+    limit: number // 定員
+    accepted: number // 参加者
+    waiting: number // 補欠者
+    updatedAt: Date // 更新日時
 }
 
 export class ConnpassEvent implements Event {
@@ -39,7 +39,7 @@ export class ConnpassEvent implements Event {
     waiting: number
     updatedAt: Date
 
-    constructor(res: connpassResponseEvent) {
+    constructor (res: connpassResponseEvent) {
         this.id = `connpass_${res.event_id}`
         this.service = 'connpass'
 
