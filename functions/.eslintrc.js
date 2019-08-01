@@ -13,5 +13,22 @@ module.exports = {
         "project": "./tsconfig.json"
     },
     "rules": {
+        "lines-between-class-members": ["error", "always", {
+            "exceptAfterSingleLine": true
+        }],
+        "@typescript-eslint/prefer-interface": ["off"],
+        "@typescript-eslint/member-delimiter-style": ["error", {
+            "multiline": {
+                "delimiter": "none",
+                "requireLast": true
+            },
+            "singleline": {
+                "delimiter": "comma",
+                "requireLast": true
+            },
+        }],
+        "@typescript-eslint/explicit-member-accessibility": ["error", {
+            "accessibility": 'no-public',
+        }],
     }
 };
