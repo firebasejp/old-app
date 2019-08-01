@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export type connpassResponseEvent = {
+export type ConnpassResponseEvent = {
     // https://api.atnd.org/
     event_id: number
     title: string
@@ -36,12 +36,13 @@ export class ConnpassClient {
         this.seriesId = groupSeriesId[group]
     }
 
-    async fetch (): Promise<connpassResponseEvent[]> {
+    async fetch (): Promise<ConnpassResponseEvent[]> {
         const response = await axios.get('https://connpass.com/api/v1/event/', {
             params: {
+                // eslint-disable-next-line @typescript-eslint/camelcase
                 series_id: this.seriesId
             }
         })
-        return response.data.events as connpassResponseEvent[]
+        return response.data.events as ConnpassResponseEvent[]
     }
 }

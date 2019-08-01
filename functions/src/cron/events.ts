@@ -11,7 +11,7 @@ export const getConnpassEvents = functions
     .region('asia-northeast1')
     .pubsub.schedule('0 9-23 * * *')
     .timeZone('Asia/Tokyo')
-    .onRun(async (context) => {
+    .onRun(async (_context) => {
         const eventsCollection = firestoreSimple.collection<Event>({ path: 'events' })
 
         const client = new ConnpassClient('tokyo')

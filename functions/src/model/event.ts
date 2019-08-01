@@ -1,4 +1,4 @@
-import { connpassResponseEvent } from '../client/connpass'
+import { ConnpassResponseEvent } from '../client/connpass'
 // @google-cloud/firestoreはfirebase-adminの依存としてインストールされている
 import { GeoPoint } from '@google-cloud/firestore'
 
@@ -39,7 +39,7 @@ export class ConnpassEvent implements Event {
     waiting: number
     updatedAt: Date
 
-    constructor (res: connpassResponseEvent) {
+    constructor (res: ConnpassResponseEvent) {
         this.id = `connpass_${res.event_id}`
         this.service = 'connpass'
 
