@@ -16,7 +16,9 @@ module.exports = {
         "lines-between-class-members": ["error", "always", {
             "exceptAfterSingleLine": true
         }],
-        "@typescript-eslint/prefer-interface": ["off"],
+        "@typescript-eslint/no-unused-vars": "off", // tsconfigと重複
+        "@typescript-eslint/prefer-interface": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/member-delimiter-style": ["error", {
             "multiline": {
                 "delimiter": "none",
