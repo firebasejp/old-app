@@ -16,6 +16,7 @@ const getConnpassThumbnail = async (url: string): Promise<ArrayBuffer> => {
     return imageResponse.data
 }
 
+// 追加されたeventsに対応するサムネイルをスクレイピングしてGCSにアップする
 export const saveEventThumbnail = functions
     .region('asia-northeast1')
     .firestore
