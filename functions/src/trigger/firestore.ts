@@ -27,6 +27,8 @@ export const saveEventThumbnail = functions
         let image: ArrayBuffer | undefined
         if (data.service === 'connpass') {
             image = await getConnpassThumbnail(data.eventUrl)
+        } else {
+            return
         }
 
         // 自分のCloud Storageに画像をアップロードし直す
