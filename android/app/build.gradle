@@ -37,32 +37,13 @@ android {
     }
 
     defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "asia.firebase.app"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    signingConfigs {
-        release {
-            // TODO: Create release key
-            // storeFile file('./debug.keystore')
-            // storePassword  "android"
-            // keyAlias "androiddebugkey"
-            // keyPassword "android"
-        }
-    }
-
-    flavorDimensions "app"
-    productFlavors {
-        // prod {
-        //     applicationId "asia.firebase.app"
-        // }
-
-        dev {
-            applicationId "asia.firebase.app.dev"
-        }
     }
 
     buildTypes {
@@ -71,9 +52,18 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
-        
-        debug {
-            signingConfig signingConfigs.debug
+    }
+
+    flavorDimensions "flavor-type"
+
+    productFlavors {
+        development {
+            dimension "flavor-type"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
+        production {
+            dimension "flavor-type"
         }
     }
 }
@@ -84,7 +74,11 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'
