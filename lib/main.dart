@@ -7,7 +7,6 @@ import 'package:app/core/viewmodel/bottom_navigation.dart';
 import 'package:app/ui/views/events_view.dart';
 import 'package:app/ui/views/profile_view.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
