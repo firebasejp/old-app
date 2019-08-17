@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/ui/router.dart';
@@ -5,6 +6,8 @@ import 'package:app/ui/views/home_view.dart';
 import 'package:app/core/viewmodel/bottom_navigation.dart';
 import 'package:app/ui/views/events_view.dart';
 import 'package:app/ui/views/profile_view.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
@@ -61,21 +64,24 @@ class App extends StatefulWidget {
   State<StatefulWidget> createState() {
     return new _AppState();
   }
-
 }
 
 class _AppState extends State<App> {
-  var _bottomNavigation = new BottomNavigation();
+  final _bottomNavigation = new BottomNavigation();
+  final FirebaseAnalytics _analytics = FirebaseAnalytics();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         Provider<BottomNavigation>.value(value: _bottomNavigation),
+        Provider<FirebaseAnalytics>.value(value: _analytics),
       ],
       child: MaterialApp(
         title: 'FJUG',
         theme: ThemeData(primarySwatch: Colors.orange),
         routes: {'/': (context) => _navigationView(context)},
+        navigatorObservers: [FirebaseAnalyticsObserver(analytics: _analytics)],
         onGenerateRoute: Router.generateRouter,
         onUnknownRoute: (settings) => MaterialPageRoute(
           builder: (_) => Scaffold(
