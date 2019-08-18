@@ -1,7 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BottomNavigation with ChangeNotifier {
   final _selectedIndexController = new BehaviorSubject<int>.seeded(0);
